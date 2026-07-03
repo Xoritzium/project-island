@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 123589639}
   - component: {fileID: 123589638}
+  - component: {fileID: 123589640}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -169,6 +170,18 @@ Transform:
   - {fileID: 964967097}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &123589640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123589637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2863753ac9871144a92dcd863f8ab3f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ship
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,15 +862,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2791958246410635041, guid: 0789b5098436dfe42a455fbe9e713095, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.438
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2791958246410635041, guid: 0789b5098436dfe42a455fbe9e713095, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2791958246410635041, guid: 0789b5098436dfe42a455fbe9e713095, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 21.95084
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2791958246410635041, guid: 0789b5098436dfe42a455fbe9e713095, type: 3}
       propertyPath: m_LocalRotation.w
@@ -887,6 +900,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7228218373032053091, guid: 0789b5098436dfe42a455fbe9e713095, type: 3}
+      propertyPath: maxAlive
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228218373032053091, guid: 0789b5098436dfe42a455fbe9e713095, type: 3}
+      propertyPath: minAlive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228218373032053091, guid: 0789b5098436dfe42a455fbe9e713095, type: 3}
+      propertyPath: tickrate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228218373032053091, guid: 0789b5098436dfe42a455fbe9e713095, type: 3}
+      propertyPath: islandPrefab
+      value: 
+      objectReference: {fileID: 4764790247006438258, guid: 1b00fadd2eeb8254d898e20e6b42fb11, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
