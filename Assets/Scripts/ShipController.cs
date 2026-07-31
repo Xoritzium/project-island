@@ -4,15 +4,15 @@ using UnityEngine;
 public class ShipController : MonoBehaviour
 {
 
-    [SerializeField, Range(1, 10)]
+    [SerializeField, Range(0, 10)]
     private float speed = 1;
     [SerializeField, Range(5, 45)]
     private float turnAmount = 5;
 
     [Header("Speed calculation")]
 
-    [SerializeField, Range(1,100)]
-    private float  angleInfluenceScale =1;
+    [SerializeField, Range(1, 100)]
+    private float angleInfluenceScale = 1;
     [SerializeField]
     private float minSpeed = 0.1f;
     [SerializeField]

@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b612942f9dbef8d4e955f3111f73d040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShipController
-  speed: 1
+  speed: 0
   turnAmount: 45
   angleInfluenceScale: 2
   minSpeed: 0.4
@@ -916,6 +916,10 @@ PrefabInstance:
       propertyPath: islandPrefab
       value: 
       objectReference: {fileID: 4764790247006438258, guid: 1b00fadd2eeb8254d898e20e6b42fb11, type: 3}
+    - target: {fileID: 7228218373032053091, guid: 0789b5098436dfe42a455fbe9e713095, type: 3}
+      propertyPath: SignProbability
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

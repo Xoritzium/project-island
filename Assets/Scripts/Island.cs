@@ -26,12 +26,12 @@ public class Island : MonoBehaviour
     }
     public void Init(Ship ship, float death)
     {
-        ship.PublishTransform += this.Proximity;
+      //  ship.PublishTransform += this.Proximity;
         this.Death = death;
         inProximity = true;
 
     }
-
+/*
     public void Update()
     {
         if (Time.time - BirthTime > Death)
@@ -40,7 +40,7 @@ public class Island : MonoBehaviour
         }
         if (!inProximity)
         {
-            OnSink.Invoke(this);
+            OnSink?.Invoke(this);
         }
 
         LivingTime = Time.time - BirthTime; //mainly debug
@@ -58,4 +58,5 @@ public class Island : MonoBehaviour
     {
 
     }
+    */
 }

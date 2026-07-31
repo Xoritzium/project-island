@@ -12,7 +12,7 @@ public class Ship : MonoBehaviour
 
     public void Update()
     {
-        PublishTransform.Invoke(this.transform.position);
+        PublishTransform?.Invoke(this.transform.position);
     }
 
 }

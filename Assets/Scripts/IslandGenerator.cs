@@ -28,13 +28,12 @@ public class IslandGenerator : MonoBehaviour
     [SerializeField]
     private float maxSpawnIslands = 5;
 
-    public float Tickrate
-    {
-        get
-        {
-            return tickrate;
-        }
-    }
+    [Header("Randomness")]
+    [SerializeField, Range(0, 1), Tooltip("The closer to one, the higher the chance, the next spawned island has positive values")]
+    private float SignProbability;
+    [SerializeField]
+    private int RandomDirectionSeed = 12;
+
 
     #endregion
     #region variables
@@ -50,17 +49,18 @@ public class IslandGenerator : MonoBehaviour
     private bool spawn = true;
 
     private Ship ship;
-    private int RandomDirectionSeed = 12;
+
 
     private int counter = 0;
 
-    private int AliveIslands = 0;
+    private int aliveIslands = 0;
 
     #endregion
     private void Start()
     {
+        aliveIslands = 0;
         ship = GameObject.FindFirstObjectByType<Ship>();
-        StartCoroutine(SpawnIslands());
+        //s  StartCoroutine(SpawnIslands());
     }
 
     /// <summary>
@@ -71,22 +71,40 @@ public class IslandGenerator : MonoBehaviour
     {
         while (spawn)
         {
-            if (this.AliveIslands == maxSpawnIslands) continue;
+            if (this.aliveIslands == maxSpawnIslands) continue;
             SpawnIsland();
             yield return new WaitForSeconds(tickrate);
         }
     }
 
-    private void SpawnIsland()
+    public void SpawnIsland()
     {
-        //Random.InitState(this.RandomDirectionSeed);
-        Vector3 direction = new(Random.value, 0, Random.value);
+        //Random.InitState(this.RandomDirectionSeed); 
+        Vector3 direction = new(Sign(SignProbability) * Random.value, 0, Sign(SignProbability) * Random.value);
         Island island = GameObject.Instantiate(islandPrefab).GetComponent<Island>();
         island.Init(this.ship, Random.Range(minAlive, maxAlive));
         island.name = "Island_" + ++counter;
         island.transform.position = direction.normalized * Random.Range(minSpawnRadius, maxSpawnRadius);
         island.OnSink += this.SinkIsland;
-        ++AliveIslands;
+        island.transform.parent = this.gameObject.transform;
+        ++aliveIslands;
+    }
+
+
+    public void DestroyIslands()
+    {
+        while (this.transform.childCount > 0)
+        {
+            if (Application.isEditor)
+            {
+                DestroyImmediate(transform.GetChild(0).gameObject);
+            }
+            if (Application.isPlaying)
+            {
+                Destroy(transform.GetChild(0).gameObject);
+            }
+        }
+        aliveIslands = 0;
     }
 
 
@@ -94,6 +112,18 @@ public class IslandGenerator : MonoBehaviour
     {
         Debug.Log($"Destroying {island.name}");
         Destroy(island.gameObject);
-        --AliveIslands;
+        --aliveIslands;
+    }
+
+    /// <summary>
+    /// Returns 1 or -1, based on the probability
+    /// </summary>
+    private int Sign(float probability)
+    {
+        if (Random.value < Mathf.Clamp(probability, 0, 1))
+        {
+            return 1;
+        }
+        return -1;
     }
 }
